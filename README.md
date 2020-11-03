@@ -1,3 +1,4 @@
 # Study2Gather
 It's ANDE Bij
-![image1](https://external-preview.redd.it/G1smjYZRVAgd79OE1ig14RHwDLTNwzWH1PDoC6HM0Kk.png?width=640&crop=smart&format=pjpg&auto=webp&s=ee6b52c5af1310acf47d87ad88ab5f8062938a86)
+
+![image1](https://preview.redd.it/btz6nxzynpw51.jpg?width=640&crop=smart&auto=webp&s=4d0a5db6a3efc7b6a2a691a3a96ed27aa2566d95)
