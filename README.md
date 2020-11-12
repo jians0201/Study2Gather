@@ -1,8 +1,6 @@
 # Study2Gather
 It's ANDE Bij
 
-![image1](https://preview.redd.it/btz6nxzynpw51.jpg?width=640&crop=smart&auto=webp&s=4d0a5db6a3efc7b6a2a691a3a96ed27aa2566d95)
-
 ![image2](https://preview.redd.it/cuz99ques6x51.jpg?width=640&crop=smart&auto=webp&s=2741c43b9a7f396ef23287a74653f994de1929bc)
 
 ![image3](https://preview.redd.it/86jkj3thf3x51.jpg?width=640&crop=smart&auto=webp&s=e0a3dbca0c5836f06fd2ca2338e900b08d7f31d1)
@@ -12,5 +10,9 @@ It's ANDE Bij
 ![image5](https://i.redd.it/1oehe972zbx51.jpg)
 
 ![image6](https://preview.redd.it/kshmfbnu5vx51.jpg?width=640&crop=smart&auto=webp&s=a8143d36f47e5b4fb1f3cedc5d93a6a31db51801)
+
+![image7](https://preview.redd.it/8w9l9cfycjy51.jpg?width=640&crop=smart&auto=webp&s=f82bca468610063563897eb870f6fec19ec4efc7)
+
+![image8](https://preview.redd.it/w7578r3rxey51.jpg?width=640&crop=smart&auto=webp&s=e5491e67584506d8a5d23313cfbcf4e7aafa6b66)
 
 
