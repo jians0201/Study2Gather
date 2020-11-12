@@ -17,6 +17,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Registration" android:theme="@style/Theme.MaterialComponents.NoActionBar">
+
+        </activity>
         <activity android:name=".Home"
             android:label="Home"
             >
@@ -29,9 +32,6 @@
 
         </activity>
         <activity android:name=".Profile">
-
-        </activity>
-        <activity android:name=".Registration">
 
         </activity>
 
