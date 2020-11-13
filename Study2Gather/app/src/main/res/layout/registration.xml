@@ -41,21 +41,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerTitle" />
 
-    <EditText
-        android:id="@+id/editTextDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="69dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="133dp"
-        android:ems="10"
-        android:inputType="date"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerSexGroup" />
-
     <TextView
         android:id="@+id/registerDOBLabel"
         android:layout_width="wrap_content"
@@ -115,7 +100,8 @@
             android:layout_height="wrap_content"
             android:text="Male"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:onClick="onRadioButtonClicked"/>
 
         <RadioButton
             android:id="@+id/registerSexFemale"
@@ -123,7 +109,8 @@
             android:layout_height="wrap_content"
             android:text="Female"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:onClick="onRadioButtonClicked"/>
 
     </RadioGroup>
 
@@ -159,5 +146,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/registerDOBTxt"
+        android:layout_width="97dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/registerDOBLabel"
+        app:layout_constraintTop_toBottomOf="@+id/registerSexGroup" />
+
+    <Button
+        android:id="@+id/registerDOBBtn"
+        android:layout_width="39dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="8dp"
+        android:text="Button"
+        android:onClick="onClick"
+        app:layout_constraintStart_toEndOf="@+id/registerDOBTxt"
+        app:layout_constraintTop_toBottomOf="@+id/registerSexGroup" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,14 @@
 package com.example.study2gather;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,10 +16,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.lang.reflect.Array;
 import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Registration extends AppCompatActivity{
+public class Registration extends AppCompatActivity implements View.OnClickListener{
+    // Global vars
+    private boolean sexValidate = false;
+    private String DOBStr = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,9 +33,53 @@ public class Registration extends AppCompatActivity{
         setContentView(R.layout.registration);
     }
 
+    // Handles radio button validations
+    public void onRadioButtonClicked(View v){
+        boolean checked = ((RadioButton) v).isChecked();
+
+
+        switch(v.getId()){
+            case R.id.registerSexMale:
+                if(checked){
+                    // Code for checking male
+                    sexValidate = true;
+                }
+                break;
+            case R.id.registerSexFemale:
+                if(checked){
+                    // Code for checking female // Ignore dup branch, 2 branches needed for data saving (FIREBASE)
+                    sexValidate = true;
+                }
+                break;
+        }
+    }
+
+    @Override
     public void onClick(View v){
         Intent i;
         switch(v.getId()){
+            // Handles for DatePicker
+            case R.id.registerDOBBtn:
+                Calendar calendar = Calendar.getInstance();
+                DatePickerDialog dpd;
+
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                int month = calendar.get(Calendar.MONTH)+1;
+                int year = calendar.get(Calendar.YEAR);
+
+                dpd = new DatePickerDialog(Registration.this, new DatePickerDialog.OnDateSetListener(){
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth){
+                        TextView DOBLabel = findViewById(R.id.registerDOBLabel);
+                        DOBStr = dayOfMonth+" / "+(month+1)+" / "+year;
+                        DOBLabel.setText(DOBStr);
+                        // Saving of data to firebase can be done here to get the DOB input!
+                    }
+                }, year, month, day);
+                dpd.getDatePicker().setMaxDate(new Date().getTime());
+                dpd.show();
+                break;
+            // Handles for Register Button
             case R.id.registerButton:
                 // Input validation
                 ArrayList<EditText> edtTxtAry = new ArrayList<>();
@@ -41,6 +95,9 @@ public class Registration extends AppCompatActivity{
                 // For email validations
                 String emailReg = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
 
+                // Check for radio buttons
+                v.getId();
+
                 // Validations
                 if(edtTxtStrAry.get(0).length() < 4 || edtTxtStrAry.get(0).length() > 18 ){
                     // Username
@@ -54,7 +111,14 @@ public class Registration extends AppCompatActivity{
                 }else if(!edtTxtStrAry.get(3).equals(edtTxtStrAry.get(2))){
                     // Confirm Password
                     Toast.makeText(Registration.this, "Password confirmed does not tally!", Toast.LENGTH_SHORT).show();
+                }else if(!sexValidate){
+                    // Sex RadioButton
+                    Toast.makeText(Registration.this, "Please choose your sex!", Toast.LENGTH_SHORT).show();
+                }else if(DOBStr.length() == 0){
+                    Toast.makeText(Registration.this, "Please input your Date of Birth!", Toast.LENGTH_SHORT).show();
                 }else{
+                    // Use edtTxtStrAry to get input data for saving to FireBase
+                    Toast.makeText(Registration.this, "Created new user successfully", Toast.LENGTH_SHORT).show();
                     i = new Intent(getApplicationContext(), Login.class);
                     startActivity(i);
                 }
