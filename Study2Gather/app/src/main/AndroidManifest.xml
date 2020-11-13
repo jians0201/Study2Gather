@@ -20,12 +20,15 @@
         <activity android:name=".Registration" android:theme="@style/Theme.MaterialComponents.NoActionBar">
 
         </activity>
+        <activity android:name=".Chat">
+
+        </activity>
         <activity android:name=".Home"
             android:label="Home"
             >
 
         </activity>
-        <activity android:name="Login">
+        <activity android:name=".Login">
 
         </activity>
         <activity android:name=".Messages">
