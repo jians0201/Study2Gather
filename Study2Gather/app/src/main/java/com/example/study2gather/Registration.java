@@ -3,7 +3,7 @@ package com.example.study2gather;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -13,13 +13,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.lang.reflect.Array;
-import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Registration extends AppCompatActivity implements View.OnClickListener{
     // Global vars
@@ -94,9 +90,6 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
                 // For email validations
                 String emailReg = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
-
-                // Check for radio buttons
-                v.getId();
 
                 // Validations
                 if(edtTxtStrAry.get(0).length() < 4 || edtTxtStrAry.get(0).length() > 18 ){
