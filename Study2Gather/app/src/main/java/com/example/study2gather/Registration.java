@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
@@ -25,14 +26,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 public class Registration extends AppCompatActivity implements View.OnClickListener{
     // Global vars
     private String DOBStr = "";
     private String gender = "";
 
-    private TextView DOBTextField;
-    private EditText rgUname, rgEmail, rgPword, rgCfmPword;
+    private TextInputLayout rgUname, rgEmail, rgPword, rgCfmPword;
+    private TextView DOBTextField, rgSexLabel, rgDOBLabel;
     private ProgressBar pgbar;
     private RadioButton rgSexMale, rgSexFemale;
 
@@ -52,8 +54,10 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         rgPword = findViewById(R.id.registerPassword);
         rgCfmPword = findViewById(R.id.registerConfirmPassword);
         fAuth = FirebaseAuth.getInstance();
+        rgSexLabel = findViewById(R.id.registerSexLabel);
         rgSexMale = findViewById(R.id.registerSexMale);
         rgSexFemale = findViewById(R.id.registerSexFemale);
+        rgDOBLabel = findViewById(R.id.registerDOBLabel);
         pgbar = findViewById(R.id.registerProgressBar);
     }
 
@@ -78,38 +82,83 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private boolean validateUserData(String uname, String email, String pword, String cfmPword) {
-        // For email validations
-//        String emailReg = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
-
-        // Validations
-        if(uname.length() < 4 || uname.length() > 18 ){
-            // Username
+    private boolean validateUsername() {
+        String uname = Objects.requireNonNull(rgUname.getEditText()).getText().toString().trim();
+        if (uname.isEmpty()) {
+            rgUname.setError(getString(R.string.registerEmptyError));
+            return false;
+        } else if (uname.length() < 4 || uname.length() > 18) {
             rgUname.setError("Username must be 4-18 characters!");
-            rgUname.requestFocus();
-        }else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches() || email.length() < 0 ){ //edtTxtStrAry.get(1).matches(emailReg) replaced with patterns library
-            // Email
-            rgEmail.setError("Enter a valid Email!");
-            rgEmail.requestFocus();
-        }else if(pword.length() < 8){
-            // Password
-            rgPword.setError("Password must be at least 8 characters");
-            rgPword.requestFocus();
-        }else if(!cfmPword.equals(pword)){
-            // Confirm Password
-            rgCfmPword.setError("Passwords do not match!");
-            rgCfmPword.requestFocus();
-        }else if(gender.length()==0){
-            // Sex RadioButton
-            rgSexFemale.setError("Select a Gender!");
-            rgSexMale.setError("Select a Gender!");
-        }else if(DOBStr.length() == 0){
-            DOBTextField.setError("Enter a Date of Birth!");
-            DOBTextField.requestFocus();
-        }else{
+            return false;
+        } else {
+            rgUname.setError(null);
             return true;
         }
-        return false;
+    }
+
+    private boolean validateEmail() {
+        String email = Objects.requireNonNull(rgEmail.getEditText()).getText().toString().trim();
+        if (email.isEmpty()) {
+            rgEmail.setError(getString(R.string.registerEmptyError));
+            return false;
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            rgEmail.setError(getString(R.string.registerEmailError));
+            return false;
+        } else {
+            rgEmail.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validatePassword() {
+        String password = Objects.requireNonNull(rgPword.getEditText()).getText().toString().trim();
+        if (password.isEmpty()) {
+            rgPword.setError(getString(R.string.registerEmptyError));
+            return false;
+        } else if (password.length() < 8) {
+            rgPword.setError(getString(R.string.registerPasswordError));
+            return false;
+        } else {
+            rgPword.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateConfirmPassword() {
+        String password = Objects.requireNonNull(rgPword.getEditText()).getText().toString().trim();
+        String confirmPassword = Objects.requireNonNull(rgCfmPword.getEditText()).getText().toString().trim();
+        if (confirmPassword.isEmpty()) {
+            rgCfmPword.setError(getString(R.string.registerEmptyError));
+            return false;
+        } else if (!confirmPassword.equals(password)) {
+            rgCfmPword.setError(getString(R.string.registerConfirmPasswordError));
+            return false;
+        } else {
+            rgCfmPword.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateGender() {
+        if (gender.isEmpty()) {
+            rgSexLabel.setError(getString(R.string.registerSexError));
+            rgSexLabel.setError(getString(R.string.registerSexError));
+            return false;
+        } else {
+            rgSexLabel.setError(null);
+            rgSexLabel.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateDOB() {
+        if (DOBStr.isEmpty()) {
+            rgDOBLabel.setError(getString(R.string.registerDOBError));
+            return false;
+        } else {
+            rgDOBLabel.setError(null);
+            return true;
+        }
     }
 
     @Override
@@ -118,7 +167,6 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         switch(v.getId()){
             // Handles for DatePicker
             case R.id.registerDOBBtn:
-                DOBTextField.setError(null);
                 Calendar calendar = Calendar.getInstance();
                 DatePickerDialog dpd;
 
@@ -140,13 +188,15 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
             // Handles for Register Button
             case R.id.registerButton:
                 //Get text fields
-                String username = rgUname.getText().toString().trim();
-                String email = rgEmail.getText().toString().trim();
-                String password = rgPword.getText().toString().trim();
-                String confirmPassword = rgCfmPword.getText().toString().trim();
+                String username = Objects.requireNonNull(rgUname.getEditText()).getText().toString().trim();
+                String email = Objects.requireNonNull(rgEmail.getEditText()).getText().toString().trim();
+                String password = Objects.requireNonNull(rgPword.getEditText()).getText().toString().trim();
+                String confirmPassword = Objects.requireNonNull(rgCfmPword.getEditText()).getText().toString().trim();
 
                 //Validate Inputs
-                if (validateUserData(username, email, password, confirmPassword)) {
+                if (!validateUsername() | !validateEmail() | !validatePassword() | !validateConfirmPassword() | !validateGender() | !validateDOB()) {
+                    return;
+                }
                     //Show progress bar
                     pgbar.setVisibility(View.VISIBLE);
                     //Create user
@@ -177,7 +227,6 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                                     }
                                 }
                             });
-                }
                 break;
         }
     }

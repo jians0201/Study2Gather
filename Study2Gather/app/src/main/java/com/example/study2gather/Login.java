@@ -13,12 +13,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 public class Login extends AppCompatActivity implements View.OnClickListener{
-    private EditText loginEmail, loginPword;
+    private TextInputLayout loginEmail, loginPword;
     private ProgressBar pgbar;
 
     private Intent i;
@@ -36,34 +39,44 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         fAuth = FirebaseAuth.getInstance();
     }
 
-    private boolean validateUserData(String email, String password) {
+    private boolean validateEmail() {
+        String email = Objects.requireNonNull(loginEmail.getEditText()).getText().toString().trim();
         if (email.isEmpty()) {
-            loginEmail.setError("Email is Required!");
-            loginEmail.requestFocus();
+            loginEmail.setError(getString(R.string.loginEmptyError));
+            return false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            loginEmail.setError("Enter a Valid Email!");
-            loginEmail.requestFocus();
-        } else if (password.isEmpty()) {
-            loginPword.setError("Password is Required!");
-            loginPword.requestFocus();
-        } else if (password.length() < 8) {
-            loginPword.setError("Enter a Valid Password!");
-            loginPword.requestFocus();
-        }
-        else {
+            loginEmail.setError(getString(R.string.loginEmailError));
+            return false;
+        } else {
+            loginEmail.setError(null);
             return true;
         }
-        return false;
+    }
+
+    private boolean validatePassword() {
+        String password = Objects.requireNonNull(loginPword.getEditText()).getText().toString().trim();
+        if (password.isEmpty()) {
+            loginPword.setError(getString(R.string.loginEmptyError));
+            return false;
+        } else if (password.length() < 8) {
+            loginPword.setError(getString(R.string.loginPasswordError));
+            return false;
+        } else {
+            loginPword.setError(null);
+            return true;
+        }
     }
 
     @Override
     public void onClick(View v){
         switch(v.getId()){
             case R.id.loginLoginButton:
-                String email = loginEmail.getText().toString().trim();
-                String password = loginPword.getText().toString().trim();
+                String email = Objects.requireNonNull(loginEmail.getEditText()).getText().toString().trim();
+                String password = Objects.requireNonNull(loginPword.getEditText()).getText().toString().trim();
 
-                if (validateUserData(email, password)) {
+                if (!validateEmail() | !validatePassword()) {
+                    return;
+                }
                     pgbar.setVisibility(View.VISIBLE);
                     fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -80,9 +93,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                             }
                         }
                     });
-
-
-                }
 
                 break;
             case R.id.loginRegisterButton:
