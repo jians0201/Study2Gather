@@ -2,9 +2,9 @@ package com.example.study2gather;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -16,7 +16,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
@@ -92,6 +91,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                                 pgbar.setVisibility(View.GONE);
                             }
                         }
+                    }).addOnFailureListener(e->{
+                        Log.d("Login Fail", e.getMessage());
                     });
 
                 break;
