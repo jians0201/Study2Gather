@@ -47,4 +47,17 @@
     / #Courses Page
     <string name="coursesTitle">Courses</string>
     <string name="coursesTabTitle">Courses</string>
+
+    / #Messages Page
+    <string name="messagesTitle">Messages</string>
+    <string name="messagesTabTitle">Messages</string>
+
+    / #Profile Page
+    <string name="profileTitle">Profile</string>
+    <string name="profileTabTitle">Profile</string>
+
+    / #Chat Page
+    <string name="chatTitle">Chat</string>
+    <string name="chatTabTitle">Chat</string>
+
 </resources>

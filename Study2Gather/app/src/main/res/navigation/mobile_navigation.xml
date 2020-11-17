@@ -22,4 +22,17 @@
         android:name="com.example.study2gather.ui.courses.CoursesFragment"
         android:label="@string/coursesTabTitle"
         tools:layout="@layout/fragment_courses" />
+
+    <fragment
+        android:id="@+id/navigation_messages"
+        android:name="com.example.study2gather.ui.messages.MessagesFragment"
+        android:label="@string/messagesTabTitle"
+        tools:layout="@layout/fragment_messages" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.study2gather.ui.profile.ProfileFragment"
+        android:label="@string/profileTabTitle"
+        tools:layout="@layout/fragment_profile" />
+
 </navigation>

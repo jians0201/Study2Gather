@@ -19,7 +19,10 @@
         <activity
             android:name=".Registration"
             android:theme="@style/Theme.MaterialComponents.NoActionBar" />
-        <activity android:name=".Chat" />
+        <activity
+            android:name=".Chat"
+            android:label="@string/chatTitle" >
+        </activity>
         <activity
             android:name=".Home"
             android:label="@string/homeTitle" >
@@ -29,9 +32,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Messages" />
-        <activity android:name=".Profile" />
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
