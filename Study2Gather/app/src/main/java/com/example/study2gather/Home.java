@@ -15,6 +15,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.study2gather.ui.messages.MessagesFragment;
 import com.example.study2gather.ui.profile.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -41,7 +42,6 @@ public class Home extends AppCompatActivity{
 
     public void onClick(View v){
         Intent i;
-
         switch(v.getId()){
             case R.id.homeProfileButton:
                i = new Intent(getApplicationContext(), ProfileFragment.class);

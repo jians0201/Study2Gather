@@ -32,22 +32,6 @@ public class MessagesFragment extends Fragment {
                 textView.setText(s);
             }
         });
-
-        final Button button = root.findViewById(R.id.messagesChatButton);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View root){
-                Intent i;
-
-                switch(root.getId()){
-                    case R.id.messagesChatButton:
-                        i = new Intent(getContext(), Chat.class);
-                        startActivity(i);
-                        break;
-                }
-            }
-        });
         return root;
     }
-
 }
