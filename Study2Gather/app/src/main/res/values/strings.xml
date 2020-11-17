@@ -1,20 +1,20 @@
 <resources>
     <string name="app_name">Study2Gather</string>
 
-    //#Splash Screen
+    // #Splash Screen
     <string name="splashLogoDesc">Study2Gather</string>
 
-    //#Login Page
+    // #Login Page
     <string name="loginEmailLabel">Email</string>
     <string name="loginPasswordLabel">Password</string>
     <string name="loginLoginBtn">Login</string>
     <string name="loginRegisterBtn">Register</string>
-    //Error Text
+    // Error Text
     <string name="loginEmptyError">Field can\'t be empty!</string>
     <string name="loginEmailError">Enter a valid Email!</string>
     <string name="loginPasswordError">Password must be at least 8 characters!</string>
 
-    //#Registration Page
+    // #Registration Page
     <string name="registerPicDesc">registerPic</string>
     <string name="registerTitle">Let\'s Start!</string>
     <string name="registerUsernameLabel">Username</string>
@@ -27,7 +27,7 @@
     <string name="registerDOBLabel">DOB</string>
     <string name="registerDOBBtn">Calender</string>
     <string name="registerRegisterBtn">Register</string>
-    //Error Text
+    // Error Text
     <string name="registerEmptyError">Field can\'t be empty!</string>
     <string name="registerUsernameError">Username must be 4–18 characters!</string>
     <string name="registerEmailError">Enter a valid Email!</string>
@@ -35,4 +35,13 @@
     <string name="registerConfirmPasswordError">Password does not match!</string>
     <string name="registerSexError">Select a Gender!</string>
     <string name="registerDOBError">Enter a Date of Birth!</string>
+
+    // #Home Page
+    <string name="homeTabLabel">Home</string>
+
+    / #Forum Page
+    <string name="forumTabLabel">Forum</string>
+
+    / #Course Page
+    <string name="courseTabLabel">Course</string>
 </resources>
