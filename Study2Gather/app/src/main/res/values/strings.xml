@@ -37,11 +37,14 @@
     <string name="registerDOBError">Enter a Date of Birth!</string>
 
     // #Home Page
-    <string name="homeTabLabel">Home</string>
+    <string name="homeTitle">Home</string>
+    <string name="homeTabTitle">Home</string>
 
     / #Forum Page
-    <string name="forumTabLabel">Forum</string>
+    <string name="forumTitle">Forum</string>
+    <string name="forumTabTitle">Forum</string>
 
-    / #Course Page
-    <string name="courseTabLabel">Course</string>
+    / #Courses Page
+    <string name="coursesTitle">Courses</string>
+    <string name="coursesTabTitle">Courses</string>
 </resources>
