@@ -83,3 +83,22 @@ lint/tmp/
 
 # Android Profiling
 *.hprof
+*.bin
+*.bin
+*.lock
+Study2Gather/.gradle/6.5/executionHistory/executionHistory.bin
+Study2Gather/.gradle/6.5/executionHistory/executionHistory.lock
+Study2Gather/.gradle/6.5/fileHashes/fileHashes.bin
+Study2Gather/.gradle/6.5/executionHistory/executionHistory.bin
+Study2Gather/.gradle/6.5/fileHashes/resourceHashesCache.bin
+Study2Gather/.gradle/6.5/javaCompile/javaCompile.lock
+Study2Gather/.gradle/6.5/javaCompile/taskHistory.bin
+Study2Gather/.gradle/buildOutputCleanup/buildOutputCleanup.lock
+Study2Gather/.gradle/buildOutputCleanup/outputFiles.bin
+Study2Gather/.gradle/checksums/checksums.lock
+Study2Gather/.gradle/checksums/md5-checksums.bin
+Study2Gather/.gradle/checksums/sha1-checksums.bin
+Study2Gather/.idea/caches/build_file_checksums.ser
+Study2Gather/.idea/workspace.xml
+Study2Gather/app/.idea/gradle.xml
+Study2Gather/local.properties
